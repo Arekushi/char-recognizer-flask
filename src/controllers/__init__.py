@@ -1,1 +1,1 @@
-from .recognizer_controller import recognizer
+from .handwritten_controller import handwritten

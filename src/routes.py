@@ -1,5 +1,5 @@
-from src.controllers import recognizer
+from src.controllers import handwritten
 
 
 def register_routes(api):
-    api.add_namespace(recognizer)
+    api.add_namespace(handwritten)

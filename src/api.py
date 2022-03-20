@@ -1,7 +1,5 @@
 from flask_restx import Api
 
-from src.routes import register_routes
-
 
 api = Api(
     version='1.0',
@@ -11,6 +9,6 @@ api = Api(
 )
 
 
-def config_api(app):
+def config_api(app) -> Api:
     api.init_app(app)
-    register_routes(api)
+    return api
