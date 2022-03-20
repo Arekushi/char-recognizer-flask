@@ -1,1 +1,1 @@
-from .handwritten_service_tf import *
+from .digit_handwritten_service import *

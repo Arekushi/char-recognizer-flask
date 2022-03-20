@@ -1,1 +1,1 @@
-from .handwritten_controller import handwritten
+from .digit_handwritten_controller import digit_handwritten

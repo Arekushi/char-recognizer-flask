@@ -1,5 +1,5 @@
-from src.controllers import handwritten
+from src.controllers import digit_handwritten
 
 
 def register_routes(api):
-    api.add_namespace(handwritten)
+    api.add_namespace(digit_handwritten)

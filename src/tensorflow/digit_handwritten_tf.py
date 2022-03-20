@@ -1,11 +1,11 @@
 import os
-import cv2 as cv
+# import cv2 as cv
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import tensorflow as tf
 
 from PIL import Image
-from PIL import ImageOps
+# from PIL import ImageOps
 
 
 Flatten = tf.keras.layers.Flatten
@@ -32,8 +32,8 @@ def get_data():
     return (x_train, y_train), (x_test, y_test)
 
 
-# def resize(data):
-#     return np.array(data).reshape(-1, IMG_HEIGHT, IMG_WIDTH, 1)
+def resize(data):
+    return np.array(data).reshape(-1, IMG_HEIGHT, IMG_WIDTH, 1)
 
 
 def create_model():
