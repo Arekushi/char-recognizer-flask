@@ -1,10 +1,10 @@
 ### 2. BUILD ###
 FROM python:3.9-slim
 WORKDIR /app
-COPY ["requirements.txt", "requirements_tensorflow.txt", "./"]
+COPY ["requirements.txt", "./"]
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements_tensorflow.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 EXPOSE 5000
