@@ -20,6 +20,5 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
-README.md
-**/models
 **/datasets
+README.md
