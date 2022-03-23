@@ -1,1 +1,2 @@
 from .digit_handwritten_controller import digit_handwritten
+from .letter_handwritten_controller import letter_handwritten

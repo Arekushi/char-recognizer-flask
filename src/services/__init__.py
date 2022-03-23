@@ -1,1 +1,2 @@
-from .digit_handwritten_service import *
+from .digit_handwritten_service import DigitHandWrittenService
+from .letter_handwritten_service import LetterHandWrittenService
