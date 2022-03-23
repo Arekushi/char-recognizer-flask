@@ -18,6 +18,15 @@ class DigitHandwrittenTF(TF):
         self.add('train', x_train, y_train)
         self.add('test', x_test, y_test)
 
+    def evaluate(self):
+        model = self.get_model()
+        (x_test, y_test) = itemgetter('x', 'y')(self.get_data('test'))
+        x_test = self.normalize(x_test)
+
+        loss, accuracy = model.evaluate(x_test, y_test)
+
+        return loss, accuracy
+
     def create_model(self):
         (x_train, y_train) = itemgetter('x', 'y')(self.get_data('train'))
         x_train = self.normalize(x_train)

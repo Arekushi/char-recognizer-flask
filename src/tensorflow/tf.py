@@ -40,25 +40,21 @@ class TF(ABC):
     def create_model(self):
         pass
 
+    @abstractmethod
+    def evaluate(self):
+        pass
+
     def get_model(self):
         if not self.model:
             self.model = tf.keras.models.load_model(f'src/models/{self.name}.model')
 
         return self.model
 
-    def evaluate(self):
-        model = self.get_model()
-        (x_test, y_test) = itemgetter('x', 'y')(self.get_data('test'))
-        x_test = self.normalize(x_test)
-
-        loss, accuracy = model.evaluate(x_test, y_test)
-
-        return loss, accuracy
-
     def predict(self, image_file):
         model = self.get_model()
 
         img = Image.open(image_file).convert('RGB')
+        img = img.resize((28, 28), Image.ANTIALIAS)
         # img = ImageOps.invert(img)
 
         img = np.array(img)
