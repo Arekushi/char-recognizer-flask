@@ -2,11 +2,10 @@ from abc import ABC, abstractmethod
 import tensorflow as tf
 import numpy as np
 
-from PIL import Image
-# from PIL import ImageOps
-
 from operator import itemgetter
 from keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Dropout
+
+from src.utils.image_utils import get_image
 
 IMG_HEIGHT = 28
 IMG_WIDTH = 28
@@ -17,6 +16,18 @@ class TF(ABC):
         self.model = None
         self.data = dict()
         self.name = name
+
+    @abstractmethod
+    def load_data(self):
+        pass
+
+    @abstractmethod
+    def create_model(self):
+        pass
+
+    @abstractmethod
+    def evaluate(self):
+        pass
 
     @staticmethod
     def normalize(data):
@@ -32,18 +43,6 @@ class TF(ABC):
             self.load_data()
             return self.data[type]
 
-    @abstractmethod
-    def load_data(self):
-        pass
-
-    @abstractmethod
-    def create_model(self):
-        pass
-
-    @abstractmethod
-    def evaluate(self):
-        pass
-
     def get_model(self):
         if not self.model:
             self.model = tf.keras.models.load_model(f'src/models/{self.name}.model')
@@ -53,12 +52,9 @@ class TF(ABC):
     def predict(self, image_file):
         model = self.get_model()
 
-        img = Image.open(image_file).convert('RGB')
-        img = img.resize((28, 28), Image.ANTIALIAS)
-        # img = ImageOps.invert(img)
-
+        img = get_image(image_file)
         img = np.array(img)
-        img = img[:, :, 0].copy()
+        img = img[:, :].copy()
         img = np.invert(np.array([img]))
 
         prediction = model.predict(img)
