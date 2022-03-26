@@ -43,7 +43,7 @@ class DigitHandwrittenTF(TF):
             metrics=['accuracy']
         )
 
-        model.fit(x_train, y_train, epochs=3)
+        model.fit(x_train, y_train, epochs=5)
         model.save(f'src/models/{self.name}.model')
 
         self.model = model

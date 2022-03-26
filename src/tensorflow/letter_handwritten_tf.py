@@ -80,7 +80,7 @@ class LetterHandwrittenTF(TF):
         model.fit(
             x_train,
             y_train_categorical,
-            epochs=2,
+            epochs=5,
             validation_data=(x_test, y_test_categorical)
         )
 

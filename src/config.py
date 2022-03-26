@@ -1,3 +1,6 @@
+from flask import Flask
+
+
 class Config:
     DEBUG = False
     PORT = 5000
@@ -22,3 +25,7 @@ configs = dict(
     production=ProductionConfig,
     default=DevelopmentConfig
 )
+
+
+def config_from_object(app: Flask, name: str):
+    app.config.from_object(configs.get(name))
