@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 import tensorflow as tf
 import numpy as np
+import pathlib
 
+from src.utils import get_path
+from src.utils.image_utils import get_image
 from operator import itemgetter
 from keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Dropout
-
-from src.utils.image_utils import get_image
 
 IMG_HEIGHT = 28
 IMG_WIDTH = 28
@@ -45,7 +46,9 @@ class TF(ABC):
 
     def get_model(self):
         if not self.model:
-            self.model = tf.keras.models.load_model(f'src/models/{self.name}.model')
+            self.model = tf.keras.models.load_model(
+                get_path(f'src/models/{self.name}.model')
+            )
 
         return self.model
 

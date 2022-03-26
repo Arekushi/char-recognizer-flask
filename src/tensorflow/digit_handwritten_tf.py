@@ -5,7 +5,9 @@
 from keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Dropout
 from operator import itemgetter
 import tensorflow as tf
+
 from src.tensorflow.tf import TF
+from src.utils import get_path
 
 
 class DigitHandwrittenTF(TF):
@@ -44,7 +46,10 @@ class DigitHandwrittenTF(TF):
         )
 
         model.fit(x_train, y_train, epochs=5)
-        model.save(f'src/models/{self.name}.model')
+
+        model.save(
+            get_path(f'src/models/{self.name}.model')
+        )
 
         self.model = model
 

@@ -8,6 +8,7 @@ from keras.optimizer_v2.adam import Adam
 from keras.utils.np_utils import to_categorical
 from sklearn.model_selection import train_test_split
 from src.tensorflow.tf import TF, IMG_WIDTH, IMG_HEIGHT
+from src.utils import get_path
 from src.utils.letters import alphabet
 
 
@@ -24,7 +25,7 @@ class LetterHandwrittenTF(TF):
         return x.reshape(x.shape[0], x.shape[1], x.shape[2], 1)
 
     def load_data(self):
-        data = pd.read_csv('src/datasets/A_Z Handwritten_Data.csv').astype('float32')
+        data = pd.read_csv(get_path('src/datasets/A_Z Handwritten_Data.csv')).astype('float32')
         x = data.drop('0', axis=1)
         y = data['0']
 
@@ -84,7 +85,9 @@ class LetterHandwrittenTF(TF):
             validation_data=(x_test, y_test_categorical)
         )
 
-        model.save(f'src/models/{self.name}.model')
+        model.save(
+            get_path(f'src/models/{self.name}.model')
+        )
 
         self.model = model
 
